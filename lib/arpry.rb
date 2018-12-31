@@ -1,6 +1,7 @@
 require 'active_record'
 require 'pry'
 require 'logger'
+require 'optparse'
 
 require "arpry/version"
 require 'arpry/cli'

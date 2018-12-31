@@ -9,10 +9,7 @@ module Arpry
     def run
       parse_options
 
-      ApplicationRecord.establish_connection(
-        adapter: @adapter,
-        database: @database,
-      )
+      ApplicationRecord.establish_connection(@params)
 
       generate_classes
 
@@ -23,10 +20,20 @@ module Arpry
 
     private
 
-    # TODO
     def parse_options
-      @database = @argv[0]
-      @adapter = 'sqlite3'
+      opt = OptionParser.new
+      opt.on('-a [NAME]', '--adapter [NAME]')
+      opt.on('-h [HOST]', '--host [HOST]')
+      opt.on('-u [NAME]', '--username [NAME]')
+      opt.on('-p [PASSOWRD]', '--password [PASSOWRD]')
+      opt.on('-d [DB]', '--database [DB]')
+      @params = {}
+      args = opt.parse(@argv, into: @params)
+
+      @params[:database] ||= args[0]
+      if File.exist?(@params[:database])
+        @params[:adapter] ||= 'sqlite3'
+      end
     end
 
     def generate_classes

@@ -11,7 +11,7 @@ You can get the same experience as Rails Console to explore database with not-Ra
 
 ## Installation
 
-```
+```bash
 $ gem install arpry
 
 # Install adapter gem(s) you need

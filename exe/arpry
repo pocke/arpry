@@ -1,0 +1,5 @@
+#!ruby
+
+require 'arpry'
+
+exit Arpry::CLI.new(ARGV).run

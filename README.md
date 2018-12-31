@@ -11,19 +11,12 @@ You can get the same experience as Rails Console to explore database with not-Ra
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'arpry'
 ```
+$ gem install arpry
 
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install arpry
+# Install adapter gem(s) you need
+$ gem install sqlite3 # Or pg, mysql2, ...
+```
 
 ## Usage
 
@@ -35,6 +28,8 @@ $ arpry /path/to/databasefile.sqlite3
 
 # For postgresql
 $ arpry --adapter postgresql --host localhost --user YOUR_USER_NAME --password YOUR_PASSWORD --database YOUR_DB_NAME
+
+# Probably it works with other RDBMS such as MySQL.
 ```
 
 See `arpry --help` for more information of command line options.

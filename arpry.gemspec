@@ -9,8 +9,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Masataka Pocke Kuwabara"]
   spec.email         = ["kuwabara@pocke.me"]
 
-  spec.summary       = %q{}
-  spec.description   = %q{}
+  spec.summary       = %q{Explore database without Rails}
+  spec.description   = %q{Explore database without Rails}
   spec.homepage      = "https://github.com/pocke/arpry"
 
   if spec.respond_to?(:metadata)

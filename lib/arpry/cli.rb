@@ -11,7 +11,8 @@ module Arpry
 
       ApplicationRecord.establish_connection(@params)
 
-      generate_classes
+      classes = generate_classes
+      define_foreign_keys(classes)
 
       binding.pry(Namespace)
 
@@ -37,12 +38,14 @@ module Arpry
     end
 
     def generate_classes
-      classes = ApplicationRecord.connection.tables.map do |table|
+      ApplicationRecord.connection.tables.map do |table|
         Namespace.const_set(table.classify, Class.new(ApplicationRecord) do
           self.table_name = table
         end)
       end
+    end
 
+    def define_foreign_keys(classes)
       relations = Array.new(classes.size) do
         Array.new(classes.size)
       end
@@ -55,6 +58,12 @@ module Arpry
           next unless ref_klass_idx
 
           relations[idx][ref_klass_idx] = col.name
+        end
+
+        klass.connection.foreign_keys(klass.table_name).each do |fk|
+          ref_klass_idx = classes.find_index {|c| c.table_name == fk.to_table }
+          next unless ref_klass_idx
+          relations[idx][ref_klass_idx] = fk.options[:column]
         end
       end
 

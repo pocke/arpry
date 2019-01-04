@@ -37,22 +37,6 @@ module Arpry
       end
     end
 
-    def parse_options
-      opt = OptionParser.new
-      opt.on('-a [NAME]', '--adapter [NAME]')
-      opt.on('-h [HOST]', '--host [HOST]')
-      opt.on('-u [NAME]', '--username [NAME]')
-      opt.on('-p [PASSOWRD]', '--password [PASSOWRD]')
-      opt.on('-d [DB]', '--database [DB]')
-      @params = {}
-      args = opt.parse(@argv, into: @params)
-
-      @params[:database] ||= args[0]
-      if File.exist?(@params[:database])
-        @params[:adapter] ||= 'sqlite3'
-      end
-    end
-
     def generate_classes(base_class, namespace)
       base_class.connection.tables.map do |table|
         namespace.const_set(table.classify, Class.new(base_class) do

@@ -11,6 +11,8 @@ You can get the same experience as Rails Console to explore database with not-Ra
 
 ## Installation
 
+Requirements: Ruby 2.4 or higher
+
 ```bash
 $ gem install arpry
 

@@ -10,7 +10,7 @@ module Arpry
     def run(conn_option)
       base = generate_base_class(conn_option)
 
-      namespace = Module.new
+      namespace = generate_namespace
       classes = generate_classes(base, namespace)
       define_foreign_keys(classes)
 
@@ -19,9 +19,17 @@ module Arpry
 
     private
 
+    def generate_namespace
+      # HACK: the namespace must have a name.
+      mod_name = 'Namespace' + SecureRandom.hex(4)
+      Module.new.tap do |mod|
+        self.class.const_set(mod_name, mod)
+      end
+    end
+
     def generate_base_class(conn_option)
       # HACK: the base class must have a name.
-      class_name = 'BaseClass' + SecureRandom.hex(20)
+      class_name = 'BaseClass' + SecureRandom.hex(4)
       Class.new(ActiveRecord::Base).tap do |klass|
         klass.logger = Arpry::Logger.logger
         self.class.const_set(class_name, klass)

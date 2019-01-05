@@ -33,7 +33,7 @@ module Arpry
       Class.new(ActiveRecord::Base).tap do |klass|
         klass.logger = Arpry::Logger.logger
         self.class.const_set(class_name, klass)
-        klass.establish_connection(conn_option)
+        klass.establish_connection(conn_option.presence)
       end
     end
 

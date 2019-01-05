@@ -27,8 +27,8 @@ module Arpry
       @params = {}
       args = opt.parse(@argv, into: @params)
 
-      @params[:database] ||= args[0]
-      if File.exist?(@params[:database])
+      @params[:database] ||= args[0] if args.present?
+      if @params[:database] && File.exist?(@params[:database])
         @params[:adapter] ||= 'sqlite3'
       end
     end

@@ -14,10 +14,10 @@ module Arpry
 
       prompts = [
         proc do |_obj, nest_level, pry|
-          "[#{pry.input_array.size}] arpry#{":#{nest_level}" unless nest_level.zero?}> "
+          "[#{pry.input_ring.size}] arpry#{":#{nest_level}" unless nest_level.zero?}> "
         end,
         proc do |_obj, nest_level, pry|
-          "[#{pry.input_array.size}] arpry#{":#{nest_level}" unless nest_level.zero?}* "
+          "[#{pry.input_ring.size}] arpry#{":#{nest_level}" unless nest_level.zero?}* "
         end,
       ]
 

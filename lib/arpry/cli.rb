@@ -10,6 +10,7 @@ module Arpry
       parse_options
 
       namespace = ClassFactory.create(@params)
+      ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer = true if @params[:adapter] == 'sqlite3'
 
       prompts = [
         proc do |_obj, nest_level, pry|

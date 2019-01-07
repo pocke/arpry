@@ -10,7 +10,17 @@ module Arpry
       parse_options
 
       namespace = ClassFactory.create(@params)
-      binding.pry(namespace)
+
+      prompts = [
+        proc do |_obj, nest_level, pry|
+          "[#{pry.input_array.size}] arpry#{":#{nest_level}" unless nest_level.zero?}> "
+        end,
+        proc do |_obj, nest_level, pry|
+          "[#{pry.input_array.size}] arpry#{":#{nest_level}" unless nest_level.zero?}* "
+        end,
+      ]
+
+      binding.pry(namespace, prompt: prompts)
 
       return 0
     end

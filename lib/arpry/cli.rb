@@ -33,7 +33,7 @@ module Arpry
       opt.on('-a [NAME]', '--adapter [NAME]')
       opt.on('-h [HOST]', '--host [HOST]')
       opt.on('-u [NAME]', '--username [NAME]')
-      opt.on('-p [PASSOWRD]', '--password [PASSOWRD]')
+      opt.on('-p [PASSWORD]', '--password [PASSWORD]')
       opt.on('-d [DB]', '--database [DB]')
       @params = {}
       args = opt.parse(@argv, into: @params)

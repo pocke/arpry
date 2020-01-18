@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{Explore database without Rails}
   spec.description   = %q{Explore database without Rails}
   spec.homepage      = "https://github.com/pocke/arpry"
+  spec.license       = 'Apache-2.0'
 
   if spec.respond_to?(:metadata)
     spec.metadata["homepage_uri"] = spec.homepage
